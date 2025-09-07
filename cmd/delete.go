@@ -16,8 +16,9 @@ var deleteCmd = &cobra.Command{
 	Long:    "delete a task",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
+		path := "todo.json"
 		// Open our jsonFile
-		jsonFile, err := os.Open("todo.json")
+		jsonFile, err := os.Open(path)
 		// if we os.Open returns an error then handle it
 		if err != nil {
 			fmt.Println(err)

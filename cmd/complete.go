@@ -16,7 +16,8 @@ var completeCmd = &cobra.Command{
 	Long:    "complete a task",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		jsonFile, err := os.Open("todo.json")
+		path := "todo.json"
+		jsonFile, err := os.Open(path)
 		if err != nil {
 			fmt.Println(err)
 			return

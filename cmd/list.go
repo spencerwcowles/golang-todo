@@ -21,9 +21,10 @@ var listCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// Open the jsonFile
 		// TODO: maybe change this from json to a basic sql database? like mysql
-		jsonFile, err := os.Open("todo.json")
+		path := "todo.json"
+		jsonFile, err := os.Open(path)
 		if err != nil {
-			println(os.Stderr, err)
+			fmt.Println(err)
 			return
 		}
 		defer jsonFile.Close()
