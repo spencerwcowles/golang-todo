@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -13,9 +14,10 @@ type JsonFile struct {
 }
 
 type Task struct {
-	Id        int    `json:"id"`
-	Title     string `json:"title"`
-	Completed bool   `json:"completed"`
+	Id        int       `json:"id"`
+	Title     string    `json:"title"`
+	Completed bool      `json:"completed"`
+	Time      time.Time `json:"time"`
 }
 
 var rootCmd = &cobra.Command{

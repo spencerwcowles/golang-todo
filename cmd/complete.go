@@ -16,14 +16,12 @@ var completeCmd = &cobra.Command{
 	Long:    "complete a task",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		// Open our jsonFile
 		jsonFile, err := os.Open("todo.json")
-		// if we os.Open returns an error then handle it
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
-		// fmt.Println("Successfully Opened todo.json")
+
 		// defer the closing of our jsonFile so that we can parse it later on
 		defer jsonFile.Close()
 

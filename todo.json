@@ -2,84 +2,28 @@
   "tasks": [
     {
       "id": 0,
-      "title": "Sample Task",
-      "completed": true
+      "title": "test time",
+      "completed": true,
+      "time": "2025-09-07T13:08:28.042082-04:00"
+    },
+    {
+      "id": 1,
+      "title": "test time 2",
+      "completed": false,
+      "time": "2025-09-07T13:09:00.251374-04:00"
     },
     {
       "id": 2,
-      "title": "new name lololol",
-      "completed": true
+      "title": "test time 3",
+      "completed": false,
+      "time": "2025-09-07T13:53:30.229879-04:00"
     },
     {
       "id": 3,
-      "title": "test",
-      "completed": true
-    },
-    {
-      "id": 4,
-      "title": "test",
-      "completed": true
-    },
-    {
-      "id": 6,
-      "title": "test5",
-      "completed": true
-    },
-    {
-      "id": 7,
-      "title": "test7",
-      "completed": true
-    },
-    {
-      "id": 8,
-      "title": "test7",
-      "completed": true
-    },
-    {
-      "id": 9,
-      "title": "test9",
-      "completed": true
-    },
-    {
-      "id": 10,
-      "title": "new test task",
-      "completed": true
-    },
-    {
-      "id": 11,
-      "title": "shorter title",
-      "completed": true
-    },
-    {
-      "id": 12,
-      "title": "12345",
-      "completed": true
-    },
-    {
-      "id": 13,
-      "title": "test",
-      "completed": false
-    },
-    {
-      "id": 14,
-      "title": "test",
-      "completed": false
-    },
-    {
-      "id": 15,
-      "title": "really long task name to test",
-      "completed": false
-    },
-    {
-      "id": 16,
-      "title": "really long task name to test",
-      "completed": false
-    },
-    {
-      "id": 17,
-      "title": "test 1",
-      "completed": false
+      "title": "Tidy up my desk",
+      "completed": false,
+      "time": "2025-09-07T13:55:56.854331-04:00"
     }
   ],
-  "nextId": 18
+  "nextId": 4
 }

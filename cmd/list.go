@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/mergestat/timediff"
 	"io"
 	"os"
 	"text/tabwriter"
@@ -22,7 +23,7 @@ var listCmd = &cobra.Command{
 		// TODO: maybe change this from json to a basic sql database? like mysql
 		jsonFile, err := os.Open("todo.json")
 		if err != nil {
-			fmt.Println(err)
+			println(os.Stderr, err)
 			return
 		}
 		defer jsonFile.Close()
@@ -36,23 +37,22 @@ var listCmd = &cobra.Command{
 
 		// show all flag, prints all tasks and extra data
 		// shows task id, name, completed
-		// TODO: add time information
-		// github.com/mergestat/timediff for displaying relative friendly time differences (1 hour ago, 10 minutes ago, etc)
-
 		if showAll {
-			fmt.Fprintln(w, "ID\tTask\tCompleted\t")
+			fmt.Fprintln(w, "ID\tTask\tCreated\tCompleted\t")
 			for i := 0; i < len(jsonData.Tasks); i++ {
-				fmt.Fprintf(w, "%d\t%s\t%t\t\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title, jsonData.Tasks[i].Completed)
+				timeDiff := timediff.TimeDiff(jsonData.Tasks[i].Time)
+				fmt.Fprintf(w, "%d\t%s\t%s\t%t\t\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title, timeDiff, jsonData.Tasks[i].Completed)
 			}
 		} else {
 			// show tasks normally
 			// shows task id, name
-			fmt.Fprintln(w, "ID\tTask")
+			fmt.Fprintln(w, "ID\tTask\tCreated")
 			for i := 0; i < len(jsonData.Tasks); i++ {
+				timeDiff := timediff.TimeDiff(jsonData.Tasks[i].Time)
 				if jsonData.Tasks[i].Completed && !showAll {
 					continue
 				}
-				fmt.Fprintf(w, "%d\t%s\t\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title)
+				fmt.Fprintf(w, "%d\t%s\t%s\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title, timeDiff)
 			}
 		}
 
@@ -63,7 +63,7 @@ var listCmd = &cobra.Command{
 }
 
 func init() {
-	// add '--all' flag
+	// '--all' flag to show all tasks including complete tasks
 	listCmd.Flags().BoolVarP(&showAll, "all", "a", false, "Show all tasks")
 	rootCmd.AddCommand(listCmd)
 }

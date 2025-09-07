@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -29,10 +30,12 @@ var addCmd = &cobra.Command{
 		byteValue, _ := io.ReadAll(jsonFile)
 		var jsonData JsonFile
 		json.Unmarshal(byteValue, &jsonData)
+		// BUG: fix if empty, handle that case better -> for first task
 		newTask := &Task{
 			Id:        jsonData.NextId,
 			Title:     args[0],
 			Completed: false,
+			Time:      time.Now(),
 		}
 		jsonData.Tasks = append(jsonData.Tasks, *newTask)
 		jsonData.NextId += 1
