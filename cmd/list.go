@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"text/tabwriter"
 
 	"github.com/spf13/cobra"
 )
@@ -24,23 +25,41 @@ var listCmd = &cobra.Command{
 			fmt.Println(err)
 			return
 		}
-		// fmt.Println("Successfully Opened todo.json")
-		// defer the closing of our jsonFile so that we can parse it later on
 		defer jsonFile.Close()
-		// parse json file to list all tasks
 
 		byteValue, _ := io.ReadAll(jsonFile)
 		var jsonData JsonFile
 		json.Unmarshal(byteValue, &jsonData)
-		fmt.Println("-------------------------------")
-		fmt.Println("Total Number of tasks: ", len(jsonData.Tasks))
-		fmt.Println("-------------------------------")
-		for i := 0; i < len(jsonData.Tasks); i++ {
-			if jsonData.Tasks[i].Completed && !showAll {
-				continue
+		// fmt.Println("-------------------------------")
+		// fmt.Println("Total Number of tasks: ", len(jsonData.Tasks))
+		// fmt.Println("-------------------------------")
+		// for i := 0; i < len(jsonData.Tasks); i++ {
+		// 	if jsonData.Tasks[i].Completed && !showAll {
+		// 		continue
+		// 	}
+		// 	fmt.Printf("Task ID: %d | Task Title: %s | Completed: %t\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title, jsonData.Tasks[i].Completed)
+		// }
+
+		w := tabwriter.NewWriter(os.Stdout, 0, 2, 4, ' ', 0)
+
+		if showAll {
+
+			fmt.Fprintln(w, "ID\tTask\tCompleted\t")
+			for i := 0; i < len(jsonData.Tasks); i++ {
+				fmt.Fprintf(w, "%d\t%s\t%t\t\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title, jsonData.Tasks[i].Completed)
 			}
-			fmt.Printf("Task ID: %d | Task Title: %s | Completed: %t\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title, jsonData.Tasks[i].Completed)
+
+		} else {
+			fmt.Fprintln(w, "ID\tTask")
+			for i := 0; i < len(jsonData.Tasks); i++ {
+				if jsonData.Tasks[i].Completed && !showAll {
+					continue
+				}
+				fmt.Fprintf(w, "%d\t%s\t\n", jsonData.Tasks[i].Id, jsonData.Tasks[i].Title)
+			}
 		}
+
+		w.Flush()
 
 	},
 }

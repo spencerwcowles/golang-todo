@@ -12,8 +12,8 @@ import (
 var addCmd = &cobra.Command{
 	Use:     "add",
 	Aliases: []string{"new"},
-	Short:   "add a task",
-	Long:    "add a task",
+	Short:   "add a task short description", // TODO: add documentation ( to all of the commands)
+	Long:    "add a task long description",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Open our jsonFile
@@ -52,7 +52,7 @@ var addCmd = &cobra.Command{
 		}
 
 		fmt.Println("-------------------------------")
-		fmt.Println("Task added successfully!")
+		fmt.Printf("Task %v added successfully!\n", newTask.Id)
 		fmt.Println("-------------------------------")
 
 	},
