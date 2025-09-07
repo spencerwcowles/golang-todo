@@ -12,8 +12,8 @@ import (
 var editCmd = &cobra.Command{
 	Use:     "edit",
 	Aliases: []string{"e"},
-	Short:   "edit a task",
-	Long:    "edit a task",
+	Short:   "Edit a task",
+	Long:    "Edit a task title by passing in a task ID from the list command",
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		path := "todo.json"

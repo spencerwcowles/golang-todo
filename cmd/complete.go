@@ -12,8 +12,8 @@ import (
 var completeCmd = &cobra.Command{
 	Use:     "complete",
 	Aliases: []string{"done"},
-	Short:   "complete a task",
-	Long:    "complete a task",
+	Short:   "Set a task as complete",
+	Long:    "Set a task as complete by passing in a task ID that one can get by listing tasks.",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		path := "todo.json"

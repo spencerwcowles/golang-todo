@@ -13,8 +13,8 @@ import (
 var addCmd = &cobra.Command{
 	Use:     "add",
 	Aliases: []string{"new"},
-	Short:   "add a task short description", // TODO: add documentation ( to all of the commands)
-	Long:    "add a task long description",
+	Short:   "Add a task",
+	Long:    "This cobra command adds a task to the JSON file using the inputted task name. It also adds the current time to the task data so we can track when the task was created.",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		path := "todo.json"

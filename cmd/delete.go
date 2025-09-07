@@ -12,8 +12,8 @@ import (
 var deleteCmd = &cobra.Command{
 	Use:     "delete",
 	Aliases: []string{"del", "remove", "rm", "rem"},
-	Short:   "delete a task",
-	Long:    "delete a task",
+	Short:   "Delete a task",
+	Long:    "Delete a task using a task ID found by listing the current tasks.",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		path := "todo.json"

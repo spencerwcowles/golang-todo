@@ -16,8 +16,8 @@ var showAll bool
 var listCmd = &cobra.Command{
 	Use:     "list",
 	Aliases: []string{"all"},
-	Short:   "list all tasks",
-	Long:    "list all tasks",
+	Short:   "List tasks",
+	Long:    "List tasks, use (--all, -a) flag to show all tasks including completed ones",
 	Run: func(cmd *cobra.Command, args []string) {
 		// Open the jsonFile
 		// TODO: maybe change this from json to a basic sql database? like mysql
